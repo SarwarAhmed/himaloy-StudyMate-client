@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -71,15 +72,27 @@ const Login = () => {
             await signInWithGoogle();
 
             navigate('/');
-            // toast.success('User created successfully');
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (error) {
-            // toast.error(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: error.message,
+            });
         }
     }
 
 
     return (
-        <div className="min-h-[calc(100vh-168px)] flex xmin-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="flex xmin-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <Helmet>
+                <title>StudyMate || Login</title>
+            </Helmet>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Log in to your account

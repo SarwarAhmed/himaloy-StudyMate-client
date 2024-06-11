@@ -9,8 +9,6 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-console.log(logo);
-
 const Navbar = () => {
     const { user, logOut } = useAuth()
 
@@ -40,11 +38,11 @@ const Navbar = () => {
                                                     : "px-4 py-2 rounded-md"
                                             }
                                         >Home</NavLink>
-                                        <NavLink to={'/ourteam'}
+                                        <NavLink to="/about"
                                             className={({ isActive }) =>
                                                 isActive
                                                     ? "bg-gray-900 text-white px-4 py-2 rounded-md"
-                                                    : "px-4 py-2 rounded-md"
+                                                    : "px-4 py-2 rounded-md hover:underline"
                                             }
                                         >About</NavLink>
                                     </div>
@@ -80,12 +78,12 @@ const Navbar = () => {
                                                     <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <MenuItem>
                                                             {({ focus }) => (
-                                                                <a
-                                                                    href="#"
+                                                                <Link
+                                                                    to={'/dashboard'}
                                                                     className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
-                                                                    Your Profile
-                                                                </a>
+                                                                   Dashboard
+                                                                </Link>
                                                             )}
                                                         </MenuItem>
                                                         <MenuItem>
@@ -177,13 +175,13 @@ const Navbar = () => {
                                         </div>
                                         <div className="mt-3 space-y-4 px-2 flex flex-col text-white">
                                             <NavLink
-                                                to={'/profile'}
+                                                to={'/dashboard'}
                                                 className={({ isActive }) =>
                                                     isActive
                                                         ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
                                                         : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
                                                 }
-                                            >Your Profile</NavLink>
+                                            >Dashboard</NavLink>
                                             <NavLink
                                                 to="/settins"
                                                 className={({ isActive }) =>
