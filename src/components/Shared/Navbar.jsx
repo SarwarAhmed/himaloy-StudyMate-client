@@ -1,12 +1,19 @@
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import avatarImg from '../../assets/images/dummyprofile.jpeg';
 import useAuth from "../../hooks/useAuth";
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
+
+
     return (
-        <Disclosure as="nav" className="bg-rose-300">
+        <Disclosure as="nav" className="bg-cyan-500">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -14,7 +21,7 @@ const Navbar = () => {
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
                                     <Link to={'/'}>
-                                        <h2 className='font-bold text-gray-100'>Study Mate</h2>
+                                        <h2 className='font-bold text-gray-100 text-xl'>StudyMate</h2>
                                     </Link>
                                 </div>
                                 <div className="hidden md:block">
@@ -46,16 +53,17 @@ const Navbar = () => {
                                         user ?
                                             <Menu as="div" className="relative ml-3">
                                                 <div>
-                                                    <Menu.Button
-                                                        className="relative flex max-w-xs items-center rounded-full
-                                                        bg-gray-800 text-sm focus:outline-none focus:ring-2
-                                                        focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                                    <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                         <span className="absolute -inset-1.5" />
                                                         <span className="sr-only">Open user menu</span>
-                                                    </Menu.Button>
+                                                        <img
+                                                            className="h-8 w-8 rounded-full"
+                                                            src={user && user.photoURL ? user.photoURL : avatarImg}
+                                                            alt=""
+                                                        />
+                                                    </MenuButton>
                                                 </div>
                                                 <Transition
-                                                    as={Fragment}
                                                     enter="transition ease-out duration-100"
                                                     enterFrom="transform opacity-0 scale-95"
                                                     enterTo="transform opacity-100 scale-100"
@@ -63,32 +71,42 @@ const Navbar = () => {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-
-                                                    <Menu.Items
-                                                        className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <Menu.Item>
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            <Link
-                                                                to={'/settings'}
-                                                                className='text-left block px-4 py-2 text-sm text-gray-700 w-full hover:bg-gray-200'>
-                                                                Settings
-                                                            </Link>
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            <button
-                                                                onClick={logOut}
-                                                                className='text-left block px-4 py-2 text-sm text-gray-700 w-full hover:bg-gray-200'>
-                                                                Log Out
-                                                            </button>
-                                                        </Menu.Item>
-
-                                                    </Menu.Items>
+                                                    <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <MenuItem>
+                                                            {({ focus }) => (
+                                                                <a
+                                                                    href="#"
+                                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Your Profile
+                                                                </a>
+                                                            )}
+                                                        </MenuItem>
+                                                        <MenuItem>
+                                                            {({ focus }) => (
+                                                                <a
+                                                                    href="#"
+                                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Settings
+                                                                </a>
+                                                            )}
+                                                        </MenuItem>
+                                                        <MenuItem>
+                                                            {({ focus }) => (
+                                                                <button
+                                                                    onClick={logOut}
+                                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Log out
+                                                                </button>
+                                                            )}
+                                                        </MenuItem>
+                                                    </MenuItems>
                                                 </Transition>
                                             </Menu>
                                             :
                                             <div className='mt-3 space-y-1 px-2'>
-                                                {/* TODO active link activation */}
                                                 <Link
                                                     to={'/login'}
                                                     className='block rounded-md px-3 py-2 text-base font-medium text-gray-800 bg-gray-50 hover:bg-gray-700 hover:text-white'
@@ -100,7 +118,7 @@ const Navbar = () => {
                             </div>
                             <div className="-mr-2 flex md:hidden">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -108,7 +126,7 @@ const Navbar = () => {
                                     ) : (
                                         <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                                     )}
-                                </Disclosure.Button>
+                                </DisclosureButton>
                             </div>
                         </div>
                     </div>
