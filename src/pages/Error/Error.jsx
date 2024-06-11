@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
 import './Error.css';
+import { Helmet } from 'react-helmet-async';
 
 const Error = () => {
 
 
     return (
         <div className=''>
+
+            <Helmet>
+                <title>StudyMate || 404</title>
+            </Helmet>
 
             <div className="wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
                 <title>404</title>

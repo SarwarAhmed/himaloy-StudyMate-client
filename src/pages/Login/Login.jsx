@@ -99,6 +99,7 @@ const Login = () => {
                                 id="email"
                                 name="email"
                                 type="email"
+                                onBlur={e => setEmail(e.target.value)}
                                 autoComplete="email"
                                 required
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -107,12 +108,14 @@ const Login = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                            Password
+                        </label>
                         <div className="mt-2 relative">
                             <input
-                                type='email'
-                                name='email'
-                                onBlur={e => setEmail(e.target.value)}
-                                id='email'
+                                type='password'
+                                name='password'
+                                id='password'
                                 required
                                 className="xblock relative w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -128,10 +131,7 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                        Password
-                    </label>
+                <div className="mt-2 flex items-center justify-between">
                     <button
                         onClick={handleResetPassword}
                         className="text-sm">
@@ -141,7 +141,7 @@ const Login = () => {
                     </button>
                 </div>
 
-                <p className="mt-10 text-center text-sm text-gray-500">
+                <p className="mt-6 text-center text-sm text-gray-500">
                     Not a member?{' '}
                     <Link
                         to={'/register'} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
@@ -152,7 +152,7 @@ const Login = () => {
                 <div className="mt-6 flex space-x-3">
                     <button
                         onClick={() => handleGoolgeSingIn()}
-                        className="flex w-full justify-center rounded-md bg-white px-3 py-3 text-sm font-semibold leading-6 text-gray-900 shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        className="flex w-full justify-center rounded-md bg-cyan-100 px-3 py-3 text-sm font-semibold leading-6 text-gray-900 shadow-sm hover:bg-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <img src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="google" className="w-6 h-6" />
                         {/* <span className="ml-2">Login with Google</span> */}
                     </button>

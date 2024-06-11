@@ -3,10 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import avatarImg from '../../assets/images/dummyprofile.jpeg';
 import useAuth from "../../hooks/useAuth";
+import logo from '/smlogo.png'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
+
+console.log(logo);
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
@@ -21,7 +24,10 @@ const Navbar = () => {
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
                                     <Link to={'/'}>
-                                        <h2 className='font-bold text-gray-100 text-xl'>StudyMate</h2>
+                                        <div className="flex space-x-2 justify-center items-center">
+                                            <img className="w-10 h-10 rounded" src={logo} alt="SM Study" />
+                                            <h2 className='font-bold text-gray-100 text-xl'>StudyMate</h2>
+                                        </div>
                                     </Link>
                                 </div>
                                 <div className="hidden md:block">
