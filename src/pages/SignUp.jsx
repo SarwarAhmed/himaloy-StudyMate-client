@@ -1,15 +1,20 @@
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { imageUpload } from "../utils";
 
 const SignUp = () => {
-    const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useAuth();
+    const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading, user } = useAuth();
     const navigate = useNavigate();
     const [imagePreview, setImagePreview] = useState(null);
     const [imageText, setImageText] = useState('Please select an image')
+
+    // if user logged in, redirect to home page
+    useEffect(() => {
+        if (user) navigate('/');
+    }, [user, navigate]);
 
     const handleSumit = async (e) => {
         e.preventDefault();
@@ -66,6 +71,8 @@ const SignUp = () => {
         setImagePreview(URL.createObjectURL(image));
         setImageText(image.name);
     }
+
+    if (user || loading) return null;
     return (
         <div className="flex xmin-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <Helmet>

@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
@@ -8,9 +8,14 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state || { pathname: '/' };
-    const { signInWithGoogle, signIn, loading, setLoading, resetPassword } = useAuth();
+    const { signInWithGoogle, signIn, loading, setLoading, resetPassword, user } = useAuth();
 
     const [email, setEmail] = useState('');
+
+    // if user logged in, redirect to home page
+    useEffect(() => {
+        if (user) navigate('/');
+    }, [user, navigate]);
 
     const handleSignIn = async e => {
         e.preventDefault();
@@ -87,6 +92,7 @@ const Login = () => {
         }
     }
 
+    if (user || loading) return null;
 
     return (
         <div className="flex xmin-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
