@@ -9,6 +9,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import Slide from './Slide'
 import { ThreeCircles } from 'react-loader-spinner'
 import useAuth from '../../hooks/useAuth'
+import LoadingSpinner from './LoadingSpinner'
 
 export default function Carousel() {
     const { loading } = useAuth();
@@ -32,25 +33,7 @@ export default function Carousel() {
         }
     ]
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center ">
-                <ThreeCircles
-
-                    visible={true}
-                    height="200"
-                    width="200"
-                    color="#4fa94d"
-                    ariaLabel="three-circles-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                />
-            </div>
-        );
-    }
-
-    console.log(posts);
-
+    if (loading) return <LoadingSpinner />
 
     return (
         <div className='container px-6 pb-10 mx-auto'>
