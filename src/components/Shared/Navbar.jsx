@@ -38,13 +38,13 @@ const Navbar = () => {
                                                     : "px-4 py-2 rounded-md"
                                             }
                                         >Home</NavLink>
-                                        <NavLink to="/about"
+                                        <NavLink to="/all-sessions"
                                             className={({ isActive }) =>
                                                 isActive
                                                     ? "bg-gray-900 text-white px-4 py-2 rounded-md"
                                                     : "px-4 py-2 rounded-md hover:underline"
                                             }
-                                        >About</NavLink>
+                                        >Sessions</NavLink>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ const Navbar = () => {
                                             ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
                                             : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
                                     }
-                                >About</NavLink>
+                                >Sessions</NavLink>
                             </Disclosure.Button>
 
                         </div>

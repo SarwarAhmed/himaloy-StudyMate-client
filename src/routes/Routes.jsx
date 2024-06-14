@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../components/Dashboard/Pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home/Home";
+import AllSessions from "../pages/AllSessions/AllSessions";
 
 export const router = createBrowserRouter([
     {
@@ -17,9 +18,12 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
-            }
+            },
+            {
+                path: '/all-sessions',
+                element: <AllSessions />,
+            },
         ],
-
     },
     {
         path: '/login',

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
+import { Link } from 'react-router-dom';
 
 const ApprovedSeesions = () => {
     const {
@@ -18,7 +19,6 @@ const ApprovedSeesions = () => {
     console.log(approvedSessions);
 
     return (
-        // Note: Do the necessary beautification of this section.
         <div className="container mx-auto px-5">
             <h1 className="text-2xl font-bold mb-4 col-span-3 text-center py-10 underline text-cyan-700 border-cyan-700">Sessions</h1>
             {isLoading ? (
@@ -40,7 +40,7 @@ const ApprovedSeesions = () => {
             <div className='flex items-center justify-center'>
                 {
                     approvedSessions.length > 2 && (
-                        <button className="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">See all sessions</button>
+                        <Link to='/all-sessions' className="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">See all sessions</Link>
                     )
                 }
             </div>

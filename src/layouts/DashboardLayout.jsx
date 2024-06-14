@@ -8,7 +8,7 @@ import {
     TransitionChild,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
 
 const DashboardLayout = () => {
@@ -82,7 +82,9 @@ const DashboardLayout = () => {
 
                 <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-5">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900">Welcome to Dashboard</h1>
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900">Welcome to
+                            <Link to='/dashboard' className='text-cyan-500 hover:underline ml-3'>Dashboard</Link>
+                        </h1>
 
                         <div className="flex items-center">
                             <Menu as="div" className="relative inline-block text-left">
