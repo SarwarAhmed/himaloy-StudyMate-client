@@ -1,27 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const StudentMenu = () => {
     return (
         <>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/view-booked-session"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     View Booked Session
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/create-note"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     Create Note
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/manage-personal-notes"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     Manage Persoan Notes
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
-                    Study Matetials
-                </Link>
+                <NavLink to="/dashboard/study-materials"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
+                    Study Materials
+                </NavLink>
             </li>
         </>
     );
