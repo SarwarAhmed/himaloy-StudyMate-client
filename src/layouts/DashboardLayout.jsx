@@ -13,22 +13,20 @@ import Navbar from '../components/Shared/Navbar';
 import StudentMenu from '../components/Shared/Menu/StudentMenu';
 import useRole from '../hooks/useRole';
 import LoadingSpinner from '../components/Shared/LoadingSpinner';
-import useAuth from '../hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
 import TutorMenu from '../components/Shared/Menu/TutorMenu';
 import AdminMenu from '../components/Shared/Menu/AdminMenu';
 
 const DashboardLayout = () => {
-    const { user } = useAuth();
     const [role, isLoading] = useRole();
-
-
 
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
     if (isLoading) {
         return <LoadingSpinner />
     }
+
+    console.log(role);
 
     return (
         <div className="bg-white">

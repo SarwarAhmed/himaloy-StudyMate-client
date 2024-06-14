@@ -1,22 +1,23 @@
 import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
+import { axiosCommon } from '../../../hooks/useAxiosCommon';
 
 const ApprovedSeesions = () => {
     const {
         data: approvedSessions = [],
         isLoading,
     } = useQuery({
-        queryKey: 'approved-sessions',
+        queryKey: ['approved-sessions'],
         queryFn: async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/approved-sessions`)
-            const data = await response.json()
+            const {data} = await axiosCommon.get(`/approved-sessions`);
             return data
         },
     })
 
-
-    console.log(approvedSessions);
+    if (isLoading) {
+        return <LoadingSpinner />
+    }
 
     return (
         <div className="container mx-auto px-5">
@@ -33,8 +34,8 @@ const ApprovedSeesions = () => {
                                 {session.status === 'approved' ? 'Ongoing' : 'Closed'}
                             </button>
                             <Link
-                                    to={`/session/${session._id}`}
-                                    className="px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
+                                to={`/session/${session._id}`}
+                                className="px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
                         </div>
                     ))}
                 </div>

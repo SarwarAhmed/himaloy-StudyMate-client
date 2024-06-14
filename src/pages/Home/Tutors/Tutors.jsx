@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import { Link } from "react-router-dom";
+import { axiosSecure } from '../../../hooks/useAxiosSecure';
 
 const Tutors = () => {
     const {
@@ -9,8 +10,7 @@ const Tutors = () => {
     } = useQuery({
         queryKey: 'tutors',
         queryFn: async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/tutors`)
-            const data = await response.json()
+            const { data } = await axiosSecure.get('/tutors')
             return data
         },
     })
