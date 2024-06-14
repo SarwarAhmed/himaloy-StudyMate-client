@@ -45,6 +45,17 @@ const Navbar = () => {
                                                     : "px-4 py-2 rounded-md hover:underline"
                                             }
                                         >Sessions</NavLink>
+                                        {/* Dashboard link for logged in user */}
+                                        {
+                                            user &&
+                                            <NavLink to={'/dashboard'}
+                                                className={({ isActive }) =>
+                                                    isActive
+                                                        ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                                                        : "px-4 py-2 rounded-md hover:underline"
+                                                }
+                                            >Dashboard</NavLink>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +93,7 @@ const Navbar = () => {
                                                                     to={'/dashboard'}
                                                                     className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
-                                                                   Dashboard
+                                                                    Dashboard
                                                                 </Link>
                                                             )}
                                                         </MenuItem>
@@ -157,6 +168,20 @@ const Navbar = () => {
                                             : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
                                     }
                                 >Sessions</NavLink>
+                                {/* Dashboard link for logged in user */}
+                                {
+                                    user &&
+                                    <Disclosure.Button className="w-full text-left">
+
+                                        <NavLink to={'/dashboard'}
+                                            className={({ isActive }) =>
+                                                isActive
+                                                    ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
+                                                    : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
+                                            }
+                                        >Dashboard</NavLink>
+                                    </Disclosure.Button>
+                                }
                             </Disclosure.Button>
 
                         </div>

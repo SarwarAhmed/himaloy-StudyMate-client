@@ -29,12 +29,12 @@ const ApprovedSeesions = () => {
                         <div key={session._id} className="bg-cyan-50 rounded-lg shadow-md p-4 mb-4">
                             <h2 className="text-lg font-bold mb-2">{session.title}</h2>
                             <p className="text-gray-600 mb-2">{session.description}</p>
-                            <button className={`px-3 py-1 rounded-md ${session.status === 'approved' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-red-500 hover:bg-red-600 text-white'}`}>
+                            <button className={`px-2 py-1 rounded-md ${session.status === 'approved' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-red-500 hover:bg-red-600 text-white'}`}>
                                 {session.status === 'approved' ? 'Ongoing' : 'Closed'}
                             </button>
                             <Link
                                     to={`/session/${session._id}`}
-                                    className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
+                                    className="px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
                         </div>
                     ))}
                 </div>
@@ -42,7 +42,7 @@ const ApprovedSeesions = () => {
             <div className='flex items-center justify-center'>
                 {
                     approvedSessions.length > 2 && (
-                        <Link to='/all-sessions' className="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">See all sessions</Link>
+                        <Link to='/all-sessions' className="px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">See all sessions</Link>
                     )
                 }
             </div>

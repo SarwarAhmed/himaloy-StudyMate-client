@@ -35,7 +35,7 @@ const AllSessions = () => {
                                 </button>
                                 <Link
                                     to={`/session/${session._id}`}
-                                    className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
+                                    className="px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
                             </div>
                         ))
                     )}
