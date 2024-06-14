@@ -8,6 +8,7 @@ import Profile from "../components/Dashboard/Pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home/Home";
 import AllSessions from "../pages/AllSessions/AllSessions";
+import SessionDetails from "../pages/SessionDetails/SessionDetails";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
                 path: '/all-sessions',
                 element: <AllSessions />,
             },
+            {
+                path: '/session/:id',
+                element: <PrivateRoute><SessionDetails /></PrivateRoute>
+            }
         ],
     },
     {

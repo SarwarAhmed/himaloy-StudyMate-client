@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../components/Shared/LoadingSpinner';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AllSessions = () => {
     const {
@@ -16,6 +18,9 @@ const AllSessions = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>StudyMate || All Sessions</title>
+            </Helmet>
             <div className="container mx-auto px-5 mt-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {isLoading ? (
@@ -28,7 +33,9 @@ const AllSessions = () => {
                                 <button className={`px-3 py-1 rounded-md ${session.status === 'approved' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-red-500 hover:bg-red-600 text-white'}`}>
                                     {session.status === 'approved' ? 'Ongoing' : 'Closed'}
                                 </button>
-                                <button className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</button>
+                                <Link
+                                    to={`/session/${session._id}`}
+                                    className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
                             </div>
                         ))
                     )}

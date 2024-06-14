@@ -32,7 +32,9 @@ const ApprovedSeesions = () => {
                             <button className={`px-3 py-1 rounded-md ${session.status === 'approved' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-red-500 hover:bg-red-600 text-white'}`}>
                                 {session.status === 'approved' ? 'Ongoing' : 'Closed'}
                             </button>
-                            <button className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</button>
+                            <Link
+                                    to={`/session/${session._id}`}
+                                    className="px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white ml-2">Read More</Link>
                         </div>
                     ))}
                 </div>

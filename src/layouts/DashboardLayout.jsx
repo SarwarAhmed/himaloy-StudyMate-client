@@ -10,11 +10,31 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
+import StudentMenu from '../components/Shared/Menu/StudentMenu';
+import useRole from '../hooks/useRole';
+import LoadingSpinner from '../components/Shared/LoadingSpinner';
+import useAuth from '../hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
+import TutorMenu from '../components/Shared/Menu/TutorMenu';
+import AdminMenu from '../components/Shared/Menu/AdminMenu';
 
 const DashboardLayout = () => {
+    const { user } = useAuth();
+    const [role, isLoading] = useRole();
+
+
+
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+
+    if (isLoading) {
+        return <LoadingSpinner />
+    }
+
     return (
         <div className="bg-white">
+            <Helmet>
+                <title>StudyMate || Dashboard</title>
+            </Helmet>
             <Navbar />
             <div>
                 {/* Mobile filter dialog */}
@@ -59,18 +79,12 @@ const DashboardLayout = () => {
                                         <h3 className="sr-only">Categories</h3>
                                         <ul role="list" className="px-2 py-3 font-medium text-gray-900">
                                             <li className='space-y-4 flex flex-col'>
-                                                <a href="/">
-                                                    one
-                                                </a>
-                                                <a href="/">
-                                                    Tow
-                                                </a>
-                                                <a href="/">
-                                                    Three
-                                                </a>
-                                                <a href="/">
-                                                    Four
-                                                </a>
+                                                {/* if user role is student the show the student menu */}
+                                                {role === 'student' && <StudentMenu />}
+                                                {/* if user role is tutor the show the tutor menu */}
+                                                {role === 'tutor' && <TutorMenu />}
+                                                {/* if user role is admin the show the admin menu */}
+                                                {role === 'admin' && <AdminMenu />}
                                             </li>
                                         </ul>
                                     </form>
@@ -124,25 +138,14 @@ const DashboardLayout = () => {
                             {/* Desktop */}
                             <form className="hidden lg:block">
                                 <h3 className="sr-only">Categories</h3>
-                                <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                                    <li >
-                                        <a href="/">One</a>
-                                    </li>
-                                    <li >
-                                        <a href="/">Tow</a>
-                                    </li>
-                                    <li >
-                                        <a href="/">Three</a>
-                                    </li>
-                                    <li >
-                                        <a href="/">Four</a>
-                                    </li>
-                                    <li >
-                                        <a href="/">Five</a>
-                                    </li>
+                                <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-base font-medium text-gray-900">
+                                    {/* if user role is student the show the student menu */}
+                                    {role === 'student' && <StudentMenu />}
+                                    {/* if user role is tutor the show the tutor menu */}
+                                    {role === 'tutor' && <TutorMenu />}
+                                    {/* if user role is admin the show the admin menu */}
+                                    {role === 'admin' && <AdminMenu />}
                                 </ul>
-
-
                             </form>
 
                             {/* Product grid */}
