@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const Slide = ({ post }) => {
 
     const { image, title } = post || {}
-    console.log(image);
 
     return (
         <div

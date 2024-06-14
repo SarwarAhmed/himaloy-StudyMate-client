@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 
 const ApprovedSeesions = () => {
@@ -8,7 +8,7 @@ const ApprovedSeesions = () => {
     } = useQuery({
         queryKey: 'approved-sessions',
         queryFn: async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/sessions`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/approved-sessions`)
             const data = await response.json()
             return data
         },
