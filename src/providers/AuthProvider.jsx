@@ -5,7 +5,6 @@ import {
     onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword,
     signInWithPopup, signOut, updateProfile
 } from 'firebase/auth'
-// import { app } from '../firebase/firebase.config'
 import axios from 'axios'
 import { app } from '../firebase/firebase.config'
 export const AuthContext = createContext(null)
@@ -44,12 +43,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const updateUserProfile = (name, photo ) => {
+    const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
         })
     }
+
     // Get token from server
     const getToken = async email => {
         const { data } = await axios.post(
@@ -110,8 +110,7 @@ const AuthProvider = ({ children }) => {
 }
 
 AuthProvider.propTypes = {
-    // Array of children.
-    children: PropTypes.array,
+    children: PropTypes.node
 }
 
 export default AuthProvider

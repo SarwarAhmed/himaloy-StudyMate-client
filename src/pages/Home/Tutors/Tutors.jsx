@@ -8,15 +8,12 @@ const Tutors = () => {
         data: tutors = [],
         isLoading,
     } = useQuery({
-        queryKey: 'tutors',
+        queryKey: ['tutors'],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/tutors')
             return data
         },
     })
-
-    console.log(tutors);
-
 
     return (
         <div className="container mx-auto px-5">
@@ -34,7 +31,7 @@ const Tutors = () => {
                             </div>
                             <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
                                 {tutors.map((person) => (
-                                    <li key={person.name}>
+                                    <li key={person._id}>
                                         <div className="flex items-center gap-x-6">
                                             <img className="h-16 w-16 rounded-full" src={`https://picsum.photos/200/300?random=${person.name}`} alt="" />
                                             <div>
