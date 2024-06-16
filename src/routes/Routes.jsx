@@ -11,6 +11,7 @@ import AllSessions from "../pages/AllSessions/AllSessions";
 import SessionDetails from "../pages/SessionDetails/SessionDetails";
 import StudentRoute from "./StudentRoute";
 import ViewBookedSessions from "../pages/ViewBookedSession/ViewBookedSessions";
+import DetailsBookedSession from "../pages/DetailsBookedSession/DetailsBookedSession";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +55,15 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <StudentRoute>
                         <ViewBookedSessions />
+                    </StudentRoute>
+                </PrivateRoute>
+            },
+            {
+                // student routes
+                path: '/dashboard/view-booked-session/:id',
+                element: <PrivateRoute>
+                    <StudentRoute>
+                        <DetailsBookedSession />
                     </StudentRoute>
                 </PrivateRoute>
             },

@@ -35,6 +35,7 @@ const ViewBookedSessions = () => {
                             <div className="min-w-0 flex-auto">
                                 <p className="text-sm font-semibold leading-6 text-gray-900">
                                     {bookedSession.sessionTitle}
+                                    {bookedSession.sessionId}
                                 </p>
                                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                                     Instructor Email: {bookedSession.tutorEmail}</p>
@@ -43,7 +44,9 @@ const ViewBookedSessions = () => {
                         <div className="xhidden shrink-0 sm:flex sm:flex-col sm:items-end">
                                 <p className="mt-1 text-xs leading-5 text-gray-500">
                                 </p>
-                                <Link className="mt-1 flex items-center gap-x-1.5">
+                                <Link
+                                to={`/dashboard/view-booked-session/${bookedSession.sessionId}`}
+                                className="mt-1 flex items-center gap-x-1.5">
                                     <p className="text-base hover:underline leading-5 text-gray-500">View Details</p>
                                 </Link>
                         </div>
