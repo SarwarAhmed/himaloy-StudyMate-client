@@ -10,6 +10,7 @@ import Home from "../pages/Home/Home";
 import AllSessions from "../pages/AllSessions/AllSessions";
 import SessionDetails from "../pages/SessionDetails/SessionDetails";
 import StudentRoute from "./StudentRoute";
+import ViewBookedSessions from "../pages/ViewBookedSession/ViewBookedSessions";
 
 export const router = createBrowserRouter([
     {
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
                 path: 'View-booked-session',
                 element: <PrivateRoute>
                     <StudentRoute>
-                        <h3>View Booked Session</h3>
+                        <ViewBookedSessions />
                     </StudentRoute>
                 </PrivateRoute>
             },

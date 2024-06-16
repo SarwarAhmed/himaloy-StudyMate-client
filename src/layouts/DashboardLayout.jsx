@@ -26,8 +26,6 @@ const DashboardLayout = () => {
         return <LoadingSpinner />
     }
 
-    console.log(role);
-
     return (
         <div className="bg-white">
             <Helmet>

@@ -31,6 +31,7 @@ const SessionDetails = () => {
         mutationFn: async () => {
             const { data } = await axiosCommon.post('/book-session', {
                 role: role,
+                sessionTitle: session.title,
                 studentEmail: user.email,
                 sessionId: session._id,
                 tutorEmail: session.tutorEmail,
