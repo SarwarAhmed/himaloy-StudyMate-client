@@ -1,11 +1,66 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { ExclamationTriangleIcon, LinkIcon, PencilIcon } from '@heroicons/react/24/outline';
+import Swal from 'sweetalert2';
+import { axiosSecure } from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
+import { useMutation } from '@tanstack/react-query';
 
 const NotesData = ({ note, refetch }) => {
+    const { user } = useAuth();
+
+    // delete note
+    const { mutateAsync } = useMutation({
+        mutationFn: async () => {
+            const { data } = await axiosSecure.delete(`/note/${user?.email}/${note?._id}`);
+            return data;
+        },
+        onSuccess: () => {
+            refetch();
+            Swal.fire({
+                title: 'Note deleted successfully',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        },
+        onError: (error) => {
+            Swal.fire({
+                title: 'Error',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+    });
+
+    const handleDelete = async () => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    mutateAsync();
+                }
+            });
+            // await mutateAsync();
+        } catch (error) {
+            Swal.fire({
+                title: 'Error',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+    };
 
     return (
-        <li key="id" className="flex flex-col md:flex-row justify-between gap-x-6 py-5">
+        <li key="id" className="flex flex-col md:flex-row justify-between gap-x-6 py-5" >
             <div className="flex min-w-0 gap-x-4 mb-5 md:mb-0">
                 <div className="min-w-0 flex-auto">
                     <Link to={`/dashboard/note/${note._id}`} className="text-base hover:underline font-semibold leading-6 text-gray-900">
@@ -40,6 +95,7 @@ const NotesData = ({ note, refetch }) => {
 
                     <span className="sm:ml-3">
                         <button
+                            onClick={handleDelete}
                             type="button"
                             className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
@@ -51,7 +107,7 @@ const NotesData = ({ note, refetch }) => {
                     </span>
                 </div>
             </div>
-        </li>
+        </li >
     );
 };
 
