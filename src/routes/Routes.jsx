@@ -12,6 +12,7 @@ import SessionDetails from "../pages/SessionDetails/SessionDetails";
 import StudentRoute from "./StudentRoute";
 import ViewBookedSessions from "../pages/ViewBookedSession/ViewBookedSessions";
 import DetailsBookedSession from "../pages/DetailsBookedSession/DetailsBookedSession";
+import CreateNotes from "../pages/Notes/CreateNotes";
 
 export const router = createBrowserRouter([
     {
@@ -72,7 +73,7 @@ export const router = createBrowserRouter([
                 path: 'create-note',
                 element: <PrivateRoute>
                     <StudentRoute>
-                        <h3>Create Note</h3>
+                        <CreateNotes />
                     </StudentRoute>
                 </PrivateRoute>
             },
