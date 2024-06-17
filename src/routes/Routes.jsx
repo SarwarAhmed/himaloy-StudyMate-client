@@ -13,6 +13,7 @@ import StudentRoute from "./StudentRoute";
 import ViewBookedSessions from "../pages/ViewBookedSession/ViewBookedSessions";
 import DetailsBookedSession from "../pages/DetailsBookedSession/DetailsBookedSession";
 import CreateNotes from "../pages/Notes/CreateNotes";
+import ManageNotes from "../pages/Notes/ManageNotes";
 
 export const router = createBrowserRouter([
     {
@@ -82,7 +83,7 @@ export const router = createBrowserRouter([
                 path: 'manage-personal-notes',
                 element: <PrivateRoute>
                     <StudentRoute>
-                        <h3>Manage personal notes</h3>
+                        <ManageNotes />
                     </StudentRoute>
                 </PrivateRoute>
             },

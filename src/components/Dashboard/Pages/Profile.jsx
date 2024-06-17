@@ -8,8 +8,6 @@ const Profile = () => {
 
     if (isLoading) return <LoadingSpinner />
 
-    console.log(role);
-
     return (
         <div>
             {
