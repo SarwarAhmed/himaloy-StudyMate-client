@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth'
 import axios from 'axios'
 import { app } from '../firebase/firebase.config'
+import Swal from 'sweetalert2'
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
@@ -39,6 +40,12 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
             withCredentials: true,
+        })
+
+        Swal.fire({
+            title: 'Logged out successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok',
         })
         return signOut(auth)
     }

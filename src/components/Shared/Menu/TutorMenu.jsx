@@ -1,27 +1,51 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const TutorMenu = () => {
     return (
         <>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/create-session"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     Create Session
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/view-all-sessions"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     View All Sessions
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/upload-materials"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     Upload Materials
-                </Link>
+                </NavLink>
             </li>
             <li className="hover:underline">
-                <Link href="/">
+                <NavLink to="/dashboard/view-all-materials"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "bg-gray-900 text-white px-4 py-2 rounded-md"
+                            : "px-4 py-2 rounded-md"
+                    }
+                >
                     View All Materials
-                </Link>
+                </NavLink>
             </li>
         </>
     );
