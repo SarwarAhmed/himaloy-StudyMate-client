@@ -6,12 +6,16 @@ import { Helmet } from "react-helmet-async";
 import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { format } from "date-fns";
+import { CalendarDaysIcon, CalendarIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 const SessionDetails = () => {
     const [role, isLoading] = useRole();
     const { id } = useParams();
     const axiosCommon = useAxiosCommon();
     const { user } = useAuth();
+    const [rating, setRating] = useState(0);
 
     // get session by id from db
     const {
@@ -94,14 +98,37 @@ const SessionDetails = () => {
                             <div className="bg-cyan-50 ml-[13%] rounded-lg shadow-md p-4 mb-4 -mt-40 z-10 absolute w-3/4">
                                 <div className="w-full mx-auto">
                                     <div>
-                                        <h2 className="text-lg font-bold mb-2">{session.title}</h2>
-                                        <p className="text-gray-600 mb-2">{session.description}</p>
-                                        <p className="text-gray-600 mb-2">Tutor: {session.tutorName}</p>
-                                        <p className="text-gray-600 mb-2">Average rating: {session.rating}</p>
-                                        <p className="text-gray-600 mb-2">Registration start date: {session.registrationStartDate}</p>
-                                        <p className="text-gray-600 mb-2">Registration end date: {session.registrationEndDate}</p>
-                                        <p className="text-gray-600 mb-2">Class start time: {session.classStartDate}</p>
-                                        <p className="text-gray-600 mb-2">Class end date: {session.classEndDate}</p>
+                                        <h2 className="text-3xl font-bold mb-2">{session.title}</h2>
+                                        <p className="text-gray-600 mb-2 text-xs uppercase font-bold">Tutor:
+                                            <span className="ml-2 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                                                {session.tutorName}
+                                            </span>
+                                        </p>
+                                        <div >
+                                            <div className="mt-2 flex items-center text-sm text-yellow-500">
+                                                <CalendarDaysIcon className="mr-1.5 h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                                Class Start:<span className="ml-1">{format(new Date(session.classStartDate), `dd/MM/yyyy`)}</span>
+                                                {/* <span>, {format(new Date(session.classStartDate), `hh:mm a`)}</span> */}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="mt-2 flex items-center text-sm text-yellow-500">
+                                                <CalendarIcon className="mr-1.5 h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                                Reg End on:<span className="ml-1">{format(new Date(session.registrationEndDate), 'dd/MM/yyyy')}</span>
+                                                {/* <span>, {format(new Date(session.registrationEndDate), `hh:mm a`)}</span> */}
+                                            </div>
+                                        </div>
+
+
+                                        <p className="text-gray-600 my-2">{session.description}</p>
+                                        <p className="text-gray-600 mb-2">Average rating: {rating || 'There is no raitng'}</p>
+                                        <p className="text-gray-600 mb-2">
+                                            Registration start date: {format(new Date(session.registrationStartDate), 'dd/MM/yyyy')}
+                                        </p>
+
+                                        <p className="text-gray-600 mb-2">
+                                            Class end date: {format(new Date(session.classEndDate), `dd/MM/yyyy`)}
+                                        </p>
                                         <p className="text-gray-600 mb-2">Session duration: {session.sessionDuration}</p>
                                         <p className="text-gray-600 mb-2">Registration fee: $ {session.registrationFee}</p>
                                         <button className={`px-3 py-2 rounded-md ${session.status === 'approved' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-red-500 hover:bg-red-600 text-white'}`}>

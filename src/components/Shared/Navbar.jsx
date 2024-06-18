@@ -128,7 +128,6 @@ const Navbar = () => {
                                                 >Log In</Link>
                                             </div>
                                     }
-
                                 </div>
                             </div>
                             <div className="-mr-2 flex md:hidden">
@@ -147,44 +146,6 @@ const Navbar = () => {
                     </div>
 
                     <Disclosure.Panel className="md:hidden">
-                        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                            <Disclosure.Button className="w-full text-left">
-
-                                <NavLink to={'/'}
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
-                                            : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
-                                    }
-                                >Home</NavLink>
-                            </Disclosure.Button>
-
-                            <Disclosure.Button className="w-full text-left">
-
-                                <NavLink to={'/ourteam'}
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
-                                            : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
-                                    }
-                                >Sessions</NavLink>
-                                {/* Dashboard link for logged in user */}
-                                {
-                                    user &&
-                                    <Disclosure.Button className="w-full text-left">
-
-                                        <NavLink to={'/dashboard'}
-                                            className={({ isActive }) =>
-                                                isActive
-                                                    ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
-                                                    : "block rounded-md px-3 py-2 text-base font-medium text-gray-200  hover:text-white"
-                                            }
-                                        >Dashboard</NavLink>
-                                    </Disclosure.Button>
-                                }
-                            </Disclosure.Button>
-
-                        </div>
                         <div className="border-t border-gray-700 pb-3 pt-4">
                             {/* For mobile device condition rendering either logged in or Not */}
                             {
