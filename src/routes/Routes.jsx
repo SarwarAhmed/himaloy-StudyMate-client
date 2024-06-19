@@ -19,6 +19,8 @@ import EditNote from "../pages/Notes/EditNote";
 import TutorRoute from "./TutorRoute";
 import CreateSession from "../pages/CreateSession/CreateSession";
 import ManageSessions from "../pages/CreateSession/ManageSessions";
+import EditSession from "../pages/SessionDetails/EditSession";
+import SessionDetailsDashboard from "../pages/SessionDetails/SessionDetailsDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -134,6 +136,42 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <TutorRoute>
                         <ManageSessions />
+                    </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // tutor routes
+                path: 'session/edit/:id',
+                element: <PrivateRoute>
+                    <TutorRoute>
+                        <EditSession />
+                    </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // tutor routes
+                path: 'session/:email/:id',
+                element: <PrivateRoute>
+                    <TutorRoute>
+                        <SessionDetailsDashboard />
+                    </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // tutor routes
+                path: 'upload-materials',
+                element: <PrivateRoute>
+                    <TutorRoute>
+                        <h3>Upload Materials</h3>
+                    </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // tutor routes
+                path: 'view-all-materials',
+                element: <PrivateRoute>
+                    <TutorRoute>
+                        <h3>View all materials</h3>
                     </TutorRoute>
                 </PrivateRoute>
             }
