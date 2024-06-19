@@ -4,23 +4,18 @@ const AdminMenu = () => {
     return (
         <>
             <li className="hover:underline">
-                <Link href="/">
-                    Create Session
+                <Link to="/dashboard/all-users">
+                    All Users
                 </Link>
             </li>
             <li className="hover:underline">
-                <Link href="/">
-                    View All Sessions
+                <Link to="/dashboard/all-sessions">
+                    All Sessions
                 </Link>
             </li>
             <li className="hover:underline">
-                <Link href="/">
-                    Upload Materials
-                </Link>
-            </li>
-            <li className="hover:underline">
-                <Link href="/">
-                    View All Materials
+                <Link to="/dashboard/all-materials">
+                    All Materials
                 </Link>
             </li>
         </>

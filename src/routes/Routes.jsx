@@ -21,6 +21,8 @@ import CreateSession from "../pages/CreateSession/CreateSession";
 import ManageSessions from "../pages/CreateSession/ManageSessions";
 import EditSession from "../pages/SessionDetails/EditSession";
 import SessionDetailsDashboard from "../pages/SessionDetails/SessionDetailsDashboard";
+import AdminRoute from "./AdminRoute";
+import AllUsers from "../pages/Admin/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -173,6 +175,33 @@ export const router = createBrowserRouter([
                     <TutorRoute>
                         <h3>View all materials</h3>
                     </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // admin routes
+                path: '/dashboard/all-users',
+                element: <PrivateRoute>
+                    <AdminRoute>
+                        <AllUsers />
+                    </AdminRoute>
+                </PrivateRoute>
+            },
+            {
+                // admin routes
+                path: '/dashboard/all-sessions',
+                element: <PrivateRoute>
+                    <AdminRoute>
+                        <AllSessions />
+                    </AdminRoute>
+                </PrivateRoute>
+            },
+            {
+                // admin routes
+                path: '/dashboard/all-materials',
+                element: <PrivateRoute>
+                    <AdminRoute>
+                        <h3>All Materials</h3>
+                    </AdminRoute>
                 </PrivateRoute>
             }
         ]

@@ -99,12 +99,12 @@ const Navbar = () => {
                                                         </MenuItem>
                                                         <MenuItem>
                                                             {({ focus }) => (
-                                                                <a
-                                                                    href="#"
+                                                                <Link
+                                                                    to="/dashboard"
                                                                     className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
                                                                     Settings
-                                                                </a>
+                                                                </Link>
                                                             )}
                                                         </MenuItem>
                                                         <MenuItem>
@@ -169,7 +169,7 @@ const Navbar = () => {
                                                 }
                                             >Dashboard</NavLink>
                                             <NavLink
-                                                to="/settins"
+                                                to="/dashboard"
                                                 className={({ isActive }) =>
                                                     isActive
                                                         ? "block rounded-md px-3 py-2 text-base font-medium text-gray-200 bg-gray-700 hover:text-white"
