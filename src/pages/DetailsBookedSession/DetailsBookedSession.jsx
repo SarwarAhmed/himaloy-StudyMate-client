@@ -3,11 +3,15 @@ import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
+import { format } from "date-fns"
 import useAuth from "../../hooks/useAuth";
+import { CalendarDaysIcon, CalendarIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 const DetailsBookedSession = () => {
     const { id } = useParams();
-    const {user} = useAuth();
+    const { user } = useAuth();
+    const [rating, setRating] = useState(0);
 
     const {
         data: bookedSession = [],
@@ -56,29 +60,45 @@ const DetailsBookedSession = () => {
             </Helmet>
             <div className="container mx-auto px-5">
                 <div>
+
+
                     <div className="">
-                        {/* <img src={`https://picsum.photos/200/300?random=${bookedSession.id}`} alt="" className="w-full h-96 object-cover rounded-lg mb-4" /> */}
-                        <div className="">
-                            <h1 className="xabsolute xbg-cyan-600 h-full rounded-lg bg-opacity-60 top-0 text-white text-4xl font-bold mb-4 mx-auto w-full text-center underline border-cyan-700">
-                            </h1>
-                        </div>
-                        <div className="">
-                            <div className="bg-cyan-50 xml-[13%] rounded-lg shadow-md p-4 mb-4 x-mt-40 z-10 w-3/4">
-                                <div className="w-full mx-auto">
-                                    <div>
-                                        <h2 className="text-lg font-bold mb-2">{bookedSession.title}</h2>
-                                        <p className="text-gray-600 mb-2">{bookedSession.description}</p>
-                                        <p className="text-gray-600 mb-2">Tutor: {bookedSession.tutorName}</p>
-                                        <p className="text-gray-600 mb-2">Average rating: {bookedSession.rating}</p>
-                                        <p className="text-gray-600 mb-2">Registration start date: {bookedSession.registrationStartDate}</p>
-                                        <p className="text-gray-600 mb-2">Registration end date: {bookedSession.registrationEndDate}</p>
-                                        <p className="text-gray-600 mb-2">Class start time: {bookedSession.classStartDate}</p>
-                                        <p className="text-gray-600 mb-2">Class end date: {bookedSession.classEndDate}</p>
-                                        <p className="text-gray-600 mb-2">bookedSession duration: {bookedSession.bookedSessionDuration}</p>
-                                        <p className="text-gray-600 mb-2">Registration fee: $ {bookedSession.registrationFee}</p>
-                                    </div>
-                                </div>
+                        <div className="bg-cyan-50 xml-[13%] rounded-lg shadow-md p-4 mb-4 x-mt-40 z-10 xabsolute">
+                            <div className="w-full mx-auto">
                                 <div>
+                                    <h2 className="text-3xl font-bold mb-2">{bookedSession.title}</h2>
+                                    <p className="text-gray-600 mb-2 text-xs uppercase font-bold">Tutor:
+                                        <span className="ml-2 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                                            {bookedSession.tutorName}
+                                        </span>
+                                    </p>
+                                    <div >
+                                        <div className="mt-2 flex items-center text-sm text-yellow-500">
+                                            <CalendarDaysIcon className="mr-1.5 h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                            Class Start:<span className="ml-1">{format(new Date(bookedSession.classStartDate), `dd/MM/yyyy`)}</span>
+                                            {/* <span>, {format(new Date(bookedSession.classStartDate), `hh:mm a`)}</span> */}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="mt-2 flex items-center text-sm text-yellow-500">
+                                            <CalendarIcon className="mr-1.5 h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                            Reg End on:<span className="ml-1">{format(new Date(bookedSession.registrationEndDate), 'dd/MM/yyyy')}</span>
+                                            {/* <span>, {format(new Date(bookedSession.registrationEndDate), `hh:mm a`)}</span> */}
+                                        </div>
+                                    </div>
+
+
+                                    <p className="text-gray-600 my-2">{bookedSession.description}</p>
+                                    <p className="text-gray-600 mb-2">Average rating: {rating || 'There is no raitng'}</p>
+                                    <p className="text-gray-600 mb-2">
+                                        Registration start date: {format(new Date(bookedSession.registrationStartDate), 'dd/MM/yyyy')}
+                                    </p>
+
+                                    <p className="text-gray-600 mb-2">
+                                        Class end date: {format(new Date(bookedSession.classEndDate), `dd/MM/yyyy`)}
+                                    </p>
+                                    <p className="text-gray-600 mb-2">bookedSession duration: {bookedSession.bookedSessionDuration}</p>
+                                    <p className="text-gray-600 mb-2">Registration fee: $ {bookedSession.registrationFee}</p>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +106,6 @@ const DetailsBookedSession = () => {
                 </div>
 
                 {/* review and rating */}
-                {/* Create a review section on the detailed page. Students can post a
-                review and rating for the study session. */}
                 <div className="mt-10">
                     <div className="bg-cyan-50 rounded-lg shadow-md p-4 mb-4">
                         <h2 className="text-lg font-bold mb-2">Reviews</h2>

@@ -15,7 +15,7 @@ const TutorMenu = () => {
                 </NavLink>
             </li>
             <li className="hover:underline">
-                <NavLink to="/dashboard/view-all-sessions"
+                <NavLink to="/dashboard/manage-sessions"
                     className={({ isActive }) =>
                         isActive
                             ? "bg-gray-900 text-white px-4 py-2 rounded-md"

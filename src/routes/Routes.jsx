@@ -18,6 +18,7 @@ import ViewNote from "../pages/Notes/ViewNote";
 import EditNote from "../pages/Notes/EditNote";
 import TutorRoute from "./TutorRoute";
 import CreateSession from "../pages/CreateSession/CreateSession";
+import ManageSessions from "../pages/CreateSession/ManageSessions";
 
 export const router = createBrowserRouter([
     {
@@ -110,6 +111,7 @@ export const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
+                // student routes
                 path: 'note/edit/:id',
                 element: <PrivateRoute>
                     <StudentRoute>
@@ -118,10 +120,20 @@ export const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
+                // tutor routes
                 path: 'create-session',
                 element: <PrivateRoute>
                     <TutorRoute>
                         <CreateSession />
+                    </TutorRoute>
+                </PrivateRoute>
+            },
+            {
+                // tutor routes
+                path: 'manage-sessions',
+                element: <PrivateRoute>
+                    <TutorRoute>
+                        <ManageSessions />
                     </TutorRoute>
                 </PrivateRoute>
             }
