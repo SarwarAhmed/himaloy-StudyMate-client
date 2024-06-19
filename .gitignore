@@ -30,4 +30,6 @@ dist-ssr
 .env.production.local
 
 Notes.txt
-
+.firebase/
+.firebaserc
+firebase.json
